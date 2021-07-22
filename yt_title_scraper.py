@@ -45,6 +45,7 @@ def _get_titles(driver, xpath_to_videotitle):
     print(len(video_titles_f), ' Videos found')
     print('Getting text from all the titles...')
     titles_text = [title.get_attribute('title') for title in video_titles_f]
+    title_url = [url.get_attribute('href') for url in video_titles_f]
     print('Done')
 
     return titles_text
@@ -62,8 +63,10 @@ def run():
     # making database
     print('Building data frame')
     df = pd.DataFrame()
-    df['video_titles'] = titles
     df['source'] = source
+    df['video_titles'] = titles
+    df['video_url'] = titles
+    
 
     print('First 5 elements of the data frame')
     print(df.head(5))
