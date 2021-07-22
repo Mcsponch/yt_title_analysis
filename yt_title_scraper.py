@@ -54,7 +54,6 @@ def _get_titles(driver, xpath_to_videotitle):
 def run():
     # scraping
     channel_videos_url = input('Please enter the URL')
-    channel_videos_url = 'https://www.youtube.com/c/ElChapucero/videos'
     driver = _start_driver(channel_videos_url)
     source = _get_channel_name(driver, X_CHAN_NAME)
     titles = _get_titles(driver, X_VIDEO_TITLES)
