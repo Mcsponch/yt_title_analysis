@@ -48,7 +48,7 @@ def _get_titles(driver, xpath_to_videotitle):
     title_url = [url.get_attribute('href') for url in video_titles_f]
     print('Done')
 
-    return titles_text
+    return titles_text , title_url
 
 
 
@@ -57,15 +57,15 @@ def run():
     channel_videos_url = input('Please enter the URL')
     driver = _start_driver(channel_videos_url)
     source = _get_channel_name(driver, X_CHAN_NAME)
-    titles = _get_titles(driver, X_VIDEO_TITLES)
+    titles, urls = _get_titles(driver, X_VIDEO_TITLES)
     driver.close()
 
     # making database
     print('Building data frame')
     df = pd.DataFrame()
-    df['source'] = source
     df['video_titles'] = titles
-    df['video_url'] = titles
+    df['video_url'] = urls
+    df['source'] = source.lower()
     
 
     print('First 5 elements of the data frame')
