@@ -51,19 +51,18 @@ def _make_dist(tokens):
     return fdist
 
 
-def _export_freq_database(fdist):
+def _export_freq_database(fdist, source):
     df_fdist = pd.DataFrame.from_dict(fdist, orient='index')
     df_fdist.columns = ['frequency']
     df_fdist.index.name = 'term'
-    out_name = input('Path to save file as csv: ')
-    df_fdist.to_csv(out_name)
-    print('csv file saved in ', out_name)
+    df_fdist.to_csv(f'{source}_word_freq.csv')
     print('Done')
 
 
 def run():
     df_path = input('Enter the path to the title database: ')
     df = _load_dataframe(df_path)
+    source = str(df['source'][0])
     titles_text = _get_text_from(df)
     text_tokens = _tokenize(titles_text)
     tokens_clean = _clean_tokens(text_tokens)

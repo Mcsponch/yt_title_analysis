@@ -83,6 +83,8 @@ def run():
     clean_fdist = _make_fdist(clean_ngrams)
     _export_ngrams(desired_ngrams, clean_fdist, type='clean', source=source)
 
+    print('Done')
+
 
 
 
